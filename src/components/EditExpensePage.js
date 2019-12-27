@@ -33,8 +33,8 @@ const mapStateToProps = (state, props) => { //also we can implicitly returned th
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  editExpense = (id, expense) => dispatch(editExpense(props.expense.id , expense)),
-  removeExpense = (data) => dispatch(removeExpense(data))
+  editExpense : (id, expense) => dispatch(editExpense(props.expense.id , expense)),
+  removeExpense : (data) => dispatch(removeExpense(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);

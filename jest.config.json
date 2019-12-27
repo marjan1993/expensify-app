@@ -15,8 +15,7 @@
    },
    "jest": {
     "transformIgnorePatterns": [
-      // "node_modules/(?!(react-native|my-project|react-native-button)/)"
-      "<rootDir>/node_modules/"
+      "/node_modules/(?!@)/"
     ],
      "moduleNameMapper": {
     "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",

@@ -15,7 +15,7 @@ module.exports = {
     // plugins: ['babel-plugin-rewire-ts', "@babel/plugin-proposal-class-properties"]
     env: {
       test: {
-        plugins: ['babel-plugin-rewire-ts', "@babel/plugin-proposal-class-properties"],
+        plugins: ['babel-plugin-rewire-ts', "@babel/plugin-proposal-class-properties", "@babel/plugin-proposal-class-properties"],
         presets: ['@babel/preset-typescript', '@babel/preset-env', '@babel/preset-react'],
       },
     }
