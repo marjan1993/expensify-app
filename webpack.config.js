@@ -1,4 +1,5 @@
 const path = require('path');
+var sourceMap = require('source-map');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env) => {
