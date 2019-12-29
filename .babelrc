@@ -13,7 +13,6 @@
     "react-hot-loader/babel",
     "dynamic-import-node",
     "@babel/plugin-proposal-class-properties",
-    "react-rename-unsafe-lifecycle"
   ],
   
     // "presets":["@babel/preset-env", "@babel/preset-react"],
