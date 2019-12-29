@@ -12,14 +12,20 @@ export default class ExpenseForm extends React.Component {
         description: props.expense ? props.expense.description : "",
         note: props.expense ? props.expense.note : "",
         amount: props.expense ? (props.expense.amount/100).toString() : "",
-        createdAd: props.expense ? moment(props.expense.createdAd) : moment(),
+        createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
         calenderFocused: false,
         error: ""
       }
     }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+      this.setState(nextProps);
+    }
     componentDidUpdate(prevProps) {
       if (this.props.userID !== prevProps.userID) {
-        this.fetchData(this.props.userID);
+        this.setState(() => {
+          this.fetchData(this.props.userID);
+        })
+        
       }
     }
     onDescriptionChange = (e) => {
@@ -40,9 +46,9 @@ export default class ExpenseForm extends React.Component {
           this.setState(() => ({ amount }));
         }
     };
-    onDateChange = (createdAd) => {
-        if (createdAd) {
-          this.setState(() => ({ createdAd }));
+    onDateChange = (createdAt) => {
+        if (createdAt) {
+          this.setState(() => ({ createdAt }));
         }
     };
     onFocusChange = ({ focused }) => {
@@ -57,7 +63,7 @@ export default class ExpenseForm extends React.Component {
             this.props.onSubmit({
               description: this.state.description,
               amount: parseFloat(this.state.amount, 10) * 100,
-              createdAd: this.state.createdAd.valueOf(),
+              createdAt: this.state.createdAt.valueOf(),
               note: this.state.note
             });
         }
@@ -81,7 +87,7 @@ export default class ExpenseForm extends React.Component {
                 onChange={this.onAmountChange}
               />
               <SingleDatePicker
-                date={this.state.createdAd}
+                date={this.state.createdAt}
                 onDateChange={this.onDateChange}
                 focused={this.state.calenderFocused}
                 onFocusChange={this.onFocusChange}
