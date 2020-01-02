@@ -17,15 +17,9 @@ export default class ExpenseForm extends React.Component {
         error: ""
       }
     }
-    UNSAFE_componentWillReceiveProps(nextProps) {
-      this.setState(nextProps);
-    }
     componentDidUpdate(prevProps) {
       if (this.props.userID !== prevProps.userID) {
-        this.setState(() => {
-          this.fetchData(this.props.userID);
-        })
-        
+        this.fetchData(this.props.userID);
       }
     }
     onDescriptionChange = (e) => {
