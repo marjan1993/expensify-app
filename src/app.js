@@ -10,6 +10,9 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import "react-dates/lib/css/_datepicker.css";
 import 'react-dates/initialize';
+import "./firebase/firebase";
+import 'firebase/auth';
+// import "./playground/promises";
 
 const store = configureStore();//redux store
 

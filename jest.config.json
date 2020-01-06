@@ -13,4 +13,5 @@
         "module_name_(.*)": "<rootDir>/substituted_module_$1.js",
         "^lodash-es$": "lodash"
    }
+
 }
