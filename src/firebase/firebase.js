@@ -1,6 +1,6 @@
 import * as firebase from "firebase";//so when we add * as we take all of those names exports and we create a new variable for them
 
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
     databaseURL: process.env.FIREBASE_DATABASE-URL,
