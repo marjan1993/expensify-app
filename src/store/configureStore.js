@@ -10,12 +10,17 @@ export default () => {
     const store = createStore(
         combineReducers({
             expenses: expensesReducer,
-            filters: filtersReducer
+            filters: filtersReducer,
+            // enableRedirectHandling: false
         }),
         composeEnhancers(applyMiddleware(thunk))
     );
     
    return store; 
 };
+
+{
+   
+}
 
 

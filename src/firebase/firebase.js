@@ -1,4 +1,7 @@
 import * as firebase from "firebase";//so when we add * as we take all of those names exports and we create a new variable for them
+// import database from 'firebase/database';
+// import firebase from "firebase";
+// import database from "firebase/database";
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -11,12 +14,12 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
 
+
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
 export { firebase, database as default };
-
 
 
 
