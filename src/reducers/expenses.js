@@ -28,6 +28,8 @@ export default (state = expensesReducerDefaultState, action) => {
                  return expense;
              };
           });
+        case "SET_EXPENSES":
+           return action.expenses // we don't want the perv state because this is just for the set expenses array completely
         default:
            return state;
     };
