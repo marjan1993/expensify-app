@@ -1,6 +1,14 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { startAddExpense, editExpense, removeExpense, addExpense, setExpenses, startSetExpenses } from "../../actions/expenses";
+import { 
+  startAddExpense, 
+  editExpense, 
+  removeExpense,
+  startRemoveExpense, 
+  addExpense, 
+  setExpenses, 
+  startSetExpenses
+} from "../../actions/expenses";
 import expenses from "../fixtures/expenses";
 import database from "../../firebase/firebase";
 
@@ -22,6 +30,23 @@ test("should setup remove expense action object", () => {
     });
 });
 
+test("should remove expense from firebase", (done) => {
+  const store = createMockStore({});
+  const id = expenses[2].id;
+  store.dispatch(startRemoveExpense({ id })).then(() => {
+     const actions = store.getActions();
+     expect(actions[0]).toEqual({
+       type: "REMOVE_EXPENSE",
+       id
+     });
+     return database.ref(`expenses/${id}`).once("value");
+  }).then((snapshot) => {
+     expect(snapshot.val()).toBeFalsy();//toBeFalsy make sure that assertion passes if the value is falsy,if it's not then assertion thrown an error
+     done();
+  });
+
+});
+
 test("should setup edit expense action object", () => {
     const action = editExpense("123abc", { note: "new note value"});
     expect(action).toEqual({
@@ -34,7 +59,7 @@ test("should setup edit expense action object", () => {
 });
 
 test("should setup add expense action object with provided value", () => {
-    const action = addExpense(expense[2]);
+    const action = addExpense(expenses[2]);
     expect(action).toEqual({
       type: "ADD_EXPENSE",
       expense: expenses[2]
@@ -123,6 +148,8 @@ test("should fetch the expenses from firebase", (done) => {
        type: "SET_EXPENSES",
        expenses
      });
-     done();
+    // expect(actions[0].equals({ type: "SET_EXPENSES", expenses })).toBe(true);
+    //expect(received.equals(expected)).toBe(true) -> jest docs way to solve the test fail
+    done();
   });
 });
