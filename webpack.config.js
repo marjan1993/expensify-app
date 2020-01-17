@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const sourceMap = require('source-map');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === "test") {
 
 module.exports = (env) => {
   const isProduction = env === "production";
-  const CSSExtract = new ExtractTextPlugin("styles.css");
    return {
     entry: './src/app.js',
     //entry: './src/playground/hoc.js',
@@ -30,29 +29,25 @@ module.exports = (env) => {
           presets:["@babel/preset-env", '@babel/preset-react'],
           plugins: ['@babel/plugin-proposal-object-rest-spread', "@babel/plugin-proposal-class-properties"]
         },
+
+        
       exclude: /(node_modules|bower_components)/,
       }, {
         test: /\.s?css$/,
-        use: CSSExtract.extract({
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                sourceMap: true
-              }
-            },
-            {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true
-              }
-            }
-          ]
-        })
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options:  {
+                  sourceMap: true
+                },
+              },
+              'css-loader',
+              'sass-loader'
+            ]
       }]
     },
     plugins: [
-      CSSExtract,
+      new MiniCssExtractPlugin,
       new webpack.DefinePlugin({
         "process.env.FIREBASE_API_KEY": JSON.stringify(process.env.FIREBASE_API_KEY),
         "process.env.FIREBASE_AUTH_DOMAIN": JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
