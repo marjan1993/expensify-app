@@ -12,5 +12,5 @@ test("should call startLogin on button click", () => {
     const startLogin = jest.fn();
     const wrapper = shallow(<LoginPage startLogin={startLogin} />)
     wrapper.find("button").simulate("click");
-    expect(startLogin).toHaveBeenLastCalled();
+    expect(startLogin).toHaveBeenCalled();
 });

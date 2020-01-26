@@ -14,10 +14,10 @@ if (process.env.NODE_ENV === "test") {
 module.exports = (env) => {
   const isProduction = env === "production";
    return {
-    entry: './src/app.js',
+    entry: ['babel-polyfill', './src/app.js'],
     //entry: './src/playground/hoc.js',
     output: {
-      path: path.join(__dirname, 'public', "dist"),
+      path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js'
     },
     module: {
@@ -29,8 +29,6 @@ module.exports = (env) => {
           presets:["@babel/preset-env", '@babel/preset-react'],
           plugins: ['@babel/plugin-proposal-object-rest-spread', "@babel/plugin-proposal-class-properties"]
         },
-
-        
       exclude: /(node_modules|bower_components)/,
       }, {
         test: /\.s?css$/,
@@ -47,7 +45,7 @@ module.exports = (env) => {
       }]
     },
     plugins: [
-      new MiniCssExtractPlugin,
+      new MiniCssExtractPlugin({filename: "styles.css", chunkFilename: 'main.css',}),
       new webpack.DefinePlugin({
         "process.env.FIREBASE_API_KEY": JSON.stringify(process.env.FIREBASE_API_KEY),
         "process.env.FIREBASE_AUTH_DOMAIN": JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
@@ -67,6 +65,9 @@ module.exports = (env) => {
     },
     node: {
       fs: "empty"
-    }
+    },
+    performance : {
+      hints : false
+   }   
   };
 };

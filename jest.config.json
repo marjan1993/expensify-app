@@ -1,17 +1,9 @@
-{
-    "setupFiles": [
-        "raf/polyfill",
-        "<rootDir>/src/tests/setupTests.js"
-    ],
-    "snapshotSerializers": [
-        "enzyme-to-json/serializer"
-    ],
-    "setupFilesAfterEnv": ["<rootDir>/src/tests/setupTests.js"],
-    "moduleNameMapper": {
-        "^image![a-zA-Z0-9$_-]+$": "GlobalImageStub",
-        "^[./a-zA-Z0-9$_-]+\\.png$": "<rootDir>/RelativeImageStub.js",
-        "module_name_(.*)": "<rootDir>/substituted_module_$1.js",
-        "^lodash-es$": "lodash"
-   }
 
-}
+{
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/tests/setupTests.js"
+    ]
+  }

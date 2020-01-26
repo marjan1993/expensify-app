@@ -1,0 +1,23 @@
+.box-layout {
+   align-items: center;
+   background: url("/images/bg.jpg");
+   background-size: cover;//this will cover the entire box layout
+   display: flex;
+   height: 100vh; //vh -> viewport height, 100vh -> 100% of viewport
+   justify-content: center;
+   width: 100vw;//vw -> viewport width
+
+}
+
+.box-layout__box {
+  background: fade-out(white, .15); //15%
+  border-radius: 3px;
+  padding: $l-size $m-size;//top-bottom left-right
+  text-align: center;
+  width: 26rem;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;//top right bottom left
+  line-height: 1;//a little bit space between multiple lines
+}

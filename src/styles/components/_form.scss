@@ -1,0 +1,12 @@
+.form {
+   display: flex;
+   flex-direction: column;
+   > * { //> * means -> will get  all direct children of from
+       margin-bottom: $m-size;
+   }
+}
+
+.form__error {
+   margin: 0 0 $m-size 0;//top right bottom left
+   font-style: italic;
+}
